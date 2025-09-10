@@ -23,7 +23,31 @@ void main(List<String> arguments) {
   stdout.writeln("Tinggi saya $tinggi cm");
   stdout.writeln("Jenis Kelamin ${jenis_kelamin ? "Laki-Laki" : "Perempuan"}");
   stdout.writeln("Alamat saya $alamat");
+  num nilai = 99;
+  stdout.writeln("Nilai saya $nilai");
+  dynamic bebas = true;
+  stdout.writeln("Nilai dari dynamic adalah $bebas");
 
+  // String angka1 = "12";
+  // int angka2 = int.parse(angka1); //perlu melakukan konversi / parse
+  // dynamic angka = "10";
+  // int ongko = angka; // jika menggunakan dynamic tidak perlu mengkonversi 
+
+  //List
+
+  List<String> hobby = ["Berenang","Baca Novel"];
+  hobby.add("Jalan-jalan");
+  stdout.writeln("Hobby saya $hobby");
+
+  Map<String, dynamic> data = {
+    "nama" : "Fairuz",
+    "Kelas" : "SIB 3B",
+    "Umur" : 20,
+  };
+  data.addAll({"Pekerjaan":"Mahasiswa"});
+  data["Kota"] = "Malang";
+  stdout.writeln("Data $data");
+  stdout.writeln("Nama yang ada di data ${data["nama"]}");
 
 
 }
