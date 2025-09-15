@@ -31,5 +31,5 @@ void main(List<String> arguments) {
 
   // Menggunakan tenary
   String status1 = (nilai>=60)? "Selamat, anda lulus" : "Maaf, anda belum lulus";
-  print(status1);
+  print("status = $status1");
 }
