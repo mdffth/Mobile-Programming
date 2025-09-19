@@ -18,12 +18,24 @@ void main(List<String> arguments) {
 
   // stdout.writeln(gl);
 
-  var setnilai = <int>{};
+  var setnilai = <String>{};
   // var setnilai2 = {3,3,4,5};
 
   // print(setnilai2);
   // print(setnilai.union(setnilai2));
   // print(setnilai.intersection(setnilai2));
+
+  // stdout.writeln("Massukkan jumlah nilai : ");
+  // String? nilai = stdin.readLineSync();
+  // int jumlah = int.tryParse(nilai ?? '')??0;
+  // for (var i = 0; i < jumlah; i++) {
+  //   stdout.writeln("Mauskkan nilai ke-${i+1}: ");
+  //   String? angka = stdin.readLineSync();
+  //   int ank = int.tryParse(angka ?? '')??0;
+  //   setnilai.add(ank);
+  // }
+
+  // print(setnilai);
 
   stdout.writeln("Massukkan jumlah nilai : ");
   String? nilai = stdin.readLineSync();
@@ -31,10 +43,11 @@ void main(List<String> arguments) {
   for (var i = 0; i < jumlah; i++) {
     stdout.writeln("Mauskkan nilai ke-${i+1}: ");
     String? angka = stdin.readLineSync();
-    int ank = int.tryParse(angka ?? '')??0;
+    String ank = angka ?? '';
     setnilai.add(ank);
   }
 
-  print(setnilai);
+  var nilailist = setnilai.toList();//konversi ke list untuk bisa di acces melalui index 
 
+  print(nilailist[0]);
 }
