@@ -37,17 +37,35 @@ void main(List<String> arguments) {
 
   // print(setnilai);
 
-  stdout.writeln("Massukkan jumlah nilai : ");
-  String? nilai = stdin.readLineSync();
-  int jumlah = int.tryParse(nilai ?? '')??0;
-  for (var i = 0; i < jumlah; i++) {
-    stdout.writeln("Mauskkan nilai ke-${i+1}: ");
-    String? angka = stdin.readLineSync();
-    String ank = angka ?? '';
-    setnilai.add(ank);
-  }
+  // stdout.writeln("Massukkan jumlah nilai : ");
+  // String? nilai = stdin.readLineSync();
+  // int jumlah = int.tryParse(nilai ?? '')??0;
+  // for (var i = 0; i < jumlah; i++) {
+  //   stdout.writeln("Mauskkan nilai ke-${i+1}: ");
+  //   String? angka = stdin.readLineSync();
+  //   String ank = angka ?? '';
+  //   setnilai.add(ank);
+  // }
 
-  var nilailist = setnilai.toList();//konversi ke list untuk bisa di acces melalui index 
+  // var nilailist = setnilai.toList();//konversi ke list untuk bisa di acces melalui index 
 
-  print(nilailist[0]);
+  // print(nilailist[0]);
+
+  var sudah = {
+    "nim" : "2341760079", 
+    "nama" : "daffa", 
+    "umur" : "20", 
+  };
+
+  print(sudah);
+  print(sudah["nama"]);
+
+    var opo = {
+    "nim" : ["2341760079","202","411"],
+    "nama" : ["daffa","andi","koma"],
+    "umur" : ["20","32","19"],
+  };
+
+  print(opo);
+  print(opo["nama"]![1]);
 }
