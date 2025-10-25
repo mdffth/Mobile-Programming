@@ -139,6 +139,25 @@ class profile_page extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(height: 30),
+              Center(
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/gallery');
+                  },
+                  icon: const Icon(Icons.photo_library),
+                  label: Text(
+                    "Lihat Galery",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueAccent,padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(10),
+                    )
+                  ),
+                ),
+              ),
             ],
           ),
         ),

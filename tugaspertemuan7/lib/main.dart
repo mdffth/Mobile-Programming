@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Contoh Routing Flutter',
-      initialRoute: '/gallery',
+      initialRoute: '/profile',
       routes: routes, // ambil dari routes.dart
     );
   }
