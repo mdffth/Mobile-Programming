@@ -66,6 +66,15 @@ class _CameraPageState extends State<CameraPage> {
       setState(() {
         pictureFile = file;
       });
+  //untuk menampilkan snack bar
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Path: ${file.path}"),
+          duration: const Duration(seconds: 3),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
     } catch (e) {
       print("Error saat mengambil foto : $e");
     }
