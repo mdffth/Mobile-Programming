@@ -14,35 +14,45 @@ class CameraPage extends StatefulWidget {
 class _CameraPageState extends State<CameraPage> {
   CameraController? _controller;
   XFile? pictureFile;
+  int selectedCameraIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    initCamera();
+    initCamera(selectedCameraIndex);
   }
 
-  Future<void> initCamera() async {
+  Future<void> initCamera(int cameraIndex) async {
     if (widget.cameras.isEmpty) {
       print("Tidak ada kamera yang tersedia");
       return;
     }
 
     _controller = CameraController(
-      widget.cameras.first,
+      widget.cameras[cameraIndex],
       ResolutionPreset.medium,
+      enableAudio: false,
     );
 
-    await _controller!.initialize();
-
-    if (!mounted) return;
-
-    setState(() {});
+    try {
+      await _controller!.initialize();
+      if (!mounted) return;
+      setState(() {});
+    } catch (e) {
+      print("Gagal instalasi kamera: $e");
+    }
   }
 
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
+  Future<void> switchCamera() async {
+    if (widget.cameras.length < 2) {
+      print("tidak ada kamera depan/belakang yang tersedia");
+      return;
+    }
+
+    selectedCameraIndex = (selectedCameraIndex + 1) % widget.cameras.length;
+
+    await _controller?.dispose();
+    await initCamera(selectedCameraIndex);
   }
 
   Future<void> takePicture() async {
@@ -62,12 +72,27 @@ class _CameraPageState extends State<CameraPage> {
   }
 
   @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (_controller == null || !_controller!.value.isInitialized) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     return Scaffold(
-      appBar: AppBar(title: const Text("Camera")),
+      appBar: AppBar(
+        title: const Text("Camera"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.cameraswitch),
+            onPressed: switchCamera,
+            tooltip: "Ganti Kamera",
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Expanded(child: CameraPreview(_controller!)),
