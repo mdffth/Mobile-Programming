@@ -2,13 +2,9 @@
 
 import 'dart:io';
 import 'dart:convert';
-import 'dart:flutter/material.dart';
-import 'dart:path_provider/path_provider.dart';
-import 'dart:path/path.dart' as path;
-
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:pertemuan12/main1.dart';
+import 'package:path/path.dart' as path;
 
 // operasi baca tulis file Json
 class FileService {
@@ -152,11 +148,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
   }
 
   Future<void> _saveUserData() async {
-    await _userService.readUserData(
+    await _userService.saveUserData(
       name: _nameController.text.trim(),
       email: _emailController.text.trim(),
       age: int.tryParse(_ageController.text),
     );
+
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(SnackBar(content: Text('Data berhasil disimpan')));
@@ -213,7 +210,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton.icon(
-                  icon: Icon(Icons.delete),
+                  icon: Icon(Icons.save),
                   label: Text('Simpan'),
                   onPressed: _saveUserData,
                 ),
