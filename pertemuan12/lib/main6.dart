@@ -28,6 +28,12 @@ class _PokemonPageState extends State<PokemonPage> {
   bool isLoading = false;
   String? error;
 
+  @override
+  void initState() {
+    super.initState();
+    fetchPokemon(); // otomatis ambil data saat pertama kali
+  }
+
   Future<void> fetchPokemon() async {
     setState(() {
       isLoading = true;
@@ -56,67 +62,63 @@ class _PokemonPageState extends State<PokemonPage> {
         isLoading = false;
       });
     }
-
-    @override
-    void initState() {
-      super.initState();
-      fetchPokemon(); // otomatis ambil data saat pertama kali
-    }
   }
+
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(title: const Text('PokeAPI - Ditto')),
-    body: Center(child: _buildPokemonCard()),
-    floatingActionButton: FloatingActionButton(
-      onPressed: fetchPokemon,
-      child: const Icon(Icons.refresh),
-      tooltip: 'Refresh Data',
-    ), 
-  ); 
-}
-
-Widget _buildPokemonCard() {
-  final name = pokemonData?['name'] ?? '-';
-  final id = pokemonData?['id'] ?? '-';
-  final height = pokemonData?['height'] ?? '-';
-  final weight = pokemonData?['weight'] ?? '-';
-  final sprite = pokemonData?['sprites']?['front_default'] ?? 
-                 'https://via.placeholder.com/150';
-
-  if (isLoading) {
-    return const CircularProgressIndicator();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('PokeAPI - Ditto')),
+      body: Center(child: _buildPokemonCard()),
+      floatingActionButton: FloatingActionButton(
+        onPressed: fetchPokemon,
+        child: const Icon(Icons.refresh),
+        tooltip: 'Refresh Data',
+      ),
+    );
   }
 
-  if (error != null) {
-    return Text(error!);
-  }
+  Widget _buildPokemonCard() {
+    final name = pokemonData?['name'] ?? '-';
+    final id = pokemonData?['id'] ?? '-';
+    final height = pokemonData?['height'] ?? '-';
+    final weight = pokemonData?['weight'] ?? '-';
+    final sprite =
+        pokemonData?['sprites']?['front_default'] ??
+        'https://via.placeholder.com/150';
 
-  return Card(
-    margin: const EdgeInsets.all(20),
-    elevation: 5,
-    child: Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.network(sprite, width: 150, height: 150),
-          const SizedBox(height: 10),
-          Text(
-            name.toString().toUpperCase(),
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: Colors.redAccent,
-            ), 
-          ), 
-          const SizedBox(height: 8),
-          Text('ID: $id'),
-          Text('Height: $height'),
-          Text('Weight: $weight'),
-        ],
-      ), 
-    ), 
-  ); 
-}
+    if (isLoading) {
+      return const CircularProgressIndicator();
+    }
+
+    if (error != null) {
+      return Text(error!);
+    }
+
+    return Card(
+      margin: const EdgeInsets.all(20),
+      elevation: 5,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.network(sprite, width: 150, height: 150),
+            const SizedBox(height: 10),
+            Text(
+              name.toString().toUpperCase(),
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.redAccent,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text('ID: $id'),
+            Text('Height: $height'),
+            Text('Weight: $weight'),
+          ],
+        ),
+      ),
+    );
+  }
 }

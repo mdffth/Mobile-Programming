@@ -14,12 +14,12 @@ class WireMockApp extends StatelessWidget {
       title: 'WireMock Cloud Demo',
       theme: ThemeData(primarySwatch: Colors.indigo),
       home: UserPage(),
-    ); // MaterialApp
+    ); 
   }
 }
 
 class ApiConfig {
-  static const String baseUrl = 'https://daffa.wiremockapi.cloud';
+  static const String baseUrl = 'https://07r8g.wiremockapi.cloud';
   static const String usersEndpoint = '/users';
   static const int timeoutSeconds = 30;
 
